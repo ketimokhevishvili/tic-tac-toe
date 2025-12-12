@@ -1,10 +1,12 @@
+import MainPage from "./component/MainPage.tsx";
+
 
 function App() {
 
   return (
-    <>
-        <div>ბჯჰსჯდჯაჰსდ</div>
-    </>
+      <div className='container lg:5'>
+          <MainPage/>
+      </div>
   )
 }
 

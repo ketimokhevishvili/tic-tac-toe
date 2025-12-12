@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.game-square {
+    @apply
+    h-24 w-24 sm:h-32 sm:w-48
+    bg-neutral-400 shadow-md rounded-xl
+    text-4xl sm:text-5xl font-extrabold
+    flex items-center justify-center
+    transition-all duration-200
+    hover:bg-gray-50 hover:shadow-lg hover:-translate-y-1
+    active:scale-95 m-4
+    border-2 border-gray-100
+}
+
+
+.player-container {
+    @apply shadow-md
+    border-2 border-amber-600
+}
+
+.player-border{
+    @apply border border-gray-300 focus:border-black focus:outline-none focus:ring-0
+}

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState} from 'react'
 
 interface PlayerPageProps {
     initialName: string
@@ -6,11 +6,9 @@ interface PlayerPageProps {
     isActive: boolean
 }
 
-
 const PlayerPage = (props: PlayerPageProps) => {
     const [playerName, setPlayerName] = useState(props.initialName);
     const [isEditing, setIsEditing] = useState(false)
-
   return(
       <li className={`flex  items-center justify-center p-3 rounded-lg transition-all duration-200 ${
           props.isActive ? "bg-amber-500 text-white shadow-lg" : "bg-gray-700 text-gray-200"

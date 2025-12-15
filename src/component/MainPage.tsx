@@ -1,9 +1,10 @@
-import PlayerPage from "./PlayerPage.tsx";
-import GameBoard from "./GameBoard.tsx";
-import {useState} from "react";
+import PlayerPage from './PlayerPage.tsx'
+import GameBoard from './GameBoard.tsx'
+import Log from './Log.tsx'
+import useTicTacToe  from './hook/useTicTacToe.ts'
 
 const MainPage = () => {
-    const [currentPlayer, setCurrentPlayer] = useState<'x'|'o'>('o')
+const hook = useTicTacToe()
   return (
       <div className="min-h-screen flex flex-col items-center justify-center ">
           <h1 className="text-3xl md:text-5xl font-bold text-slate-800 mb-8">
@@ -14,16 +15,18 @@ const MainPage = () => {
                   <PlayerPage
                       initialName='player 1'
                       symbol='o'
-                      isActive={currentPlayer === 'o'}
+                      isActive={hook.activePlayer === 'o'}
                   />
                   <PlayerPage
                       initialName='player 2'
                       symbol='X'
-                      isActive={currentPlayer === 'x'}
+                      isActive={hook.activePlayer === 'x'}
                   />
               </ol>
-              <GameBoard  currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer}/>
+              <GameBoard  hook={hook}
+              />
           </div>
+          <Log gameTurns={hook.gameTurns}/>
       </div>
   )
 }

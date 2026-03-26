@@ -9,7 +9,7 @@ interface LogProps {
 const Log = (props: LogProps) => {
     return (
         <div className='ml-4 mt-4 sm:mt-6 bg-zinc-900/50 border border-zinc-800 rounded-xl sm:rounded-2xl p-3 sm:p-4 max-h-36 sm:max-h-48 overflow-y-auto'>
-            <p className='text-zinc-500 text-xs uppercase tracking-widest mb-3'>Move History</p>
+            <p className='text-zinc-500 text-[10px] sm:text-xs uppercase tracking-widest mb-2 sm:mb-3'>Move History</p>
             <ol className='space-y-1'>
                 {props.gameTurns.map(({ player, square: { row, col } }) => (
                     <li key={`${row}${col}`}
@@ -18,7 +18,7 @@ const Log = (props: LogProps) => {
                     {props.players[player]}
                 </span>
                         <span className='text-zinc-600'>→</span>
-                        <span>({row}, {col})</span>
+                        <span>({row + 1}, {col + 1})</span>
                     </li>
                 ))}
             </ol>

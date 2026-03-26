@@ -6,7 +6,7 @@ interface GameBoardProps {
 
 const GameBoard = (props: GameBoardProps) => {
   return (
-      <ol className='flex flex-col gap-2'>
+      <ol className='flex flex-col gap-2 mx-auto w-fit'>
           {props.hook.gameBoard.map((row, rowIndex) => (
               <li key={rowIndex}
           >
@@ -16,14 +16,17 @@ const GameBoard = (props: GameBoardProps) => {
                           key={colIndex}
                           className='game-square'
                       >
-                          <button className={`aspect-square w-full text-4xl font-black rounded-xl border transition-all duration-200
-                            ${playerSymbol === 'x' ? 'text-amber-400 border-amber-400/30 bg-amber-400/5' 
-                              : playerSymbol === 'o' ? 'text-sky-400 border-sky-400/30 bg-sky-400/5' :
-                             'border-zinc-700 bg-zinc-800/50 hover:bg-zinc-700/50 hover:border-zinc-500 text-transparent'}`}
-                                  onClick={ () => props.hook.handleSelectSquare(rowIndex,colIndex)}
+                              <button
+                                  className={`game-square ${
+                                      playerSymbol === 'x' ? 'game-square-x'
+                                          : playerSymbol === 'o' ? 'game-square-o'
+                                              : 'game-square-empty'
+                                  }`}
+                                  onClick={() => props.hook.handleSelectSquare(rowIndex, colIndex)}
                                   disabled={playerSymbol !== null}
-                          >{playerSymbol?.toUpperCase()}
-                          </button>
+                              >
+                                  {playerSymbol?.toUpperCase()}
+                              </button>
                           </li>
                       ))}
                   </ol>

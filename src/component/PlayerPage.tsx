@@ -9,16 +9,26 @@ interface PlayerPageProps {
 
 
 const PlayerPage = (props: PlayerPageProps) => {
-    const [playerName, setPlayerName] = useState(props.initialName);
+    const [playerName, setPlayerName] = useState(props.initialName)
     const [isEditing, setIsEditing] = useState(false)
+    const [prevName, setPrevName] = useState('')
 
 
     const editClick = () => {
     setIsEditing((editing) => !editing);
     if (isEditing) {
-        props.onChangeName(props.symbol,playerName)
+        props.onChangeName(props.symbol, playerName)
+        setIsEditing(false)
+    }else {
+        setPrevName(playerName)
+        setIsEditing(true)
     }
 }
+    const cancelClick = () => {
+        setPlayerName(prevName)
+        setIsEditing(false)
+    }
+    const btnClass = 'text-xs uppercase tracking-widest font-bold transition-colors'
 
   return(
       <li className={`flex flex-col items-center gap-2 p-5 rounded-2xl border transition-all duration-300 w-44
@@ -34,16 +44,31 @@ const PlayerPage = (props: PlayerPageProps) => {
                   className='bg-zinc-900 border border-amber-400/50 text-white text-center text-sm rounded-lg px-3 py-1 w-full outline-none focus:border-amber-400'
                   type='text'
                   value={playerName}
-                  onChange={(e) => setPlayerName(e.target.value)}
+                  onChange={(e) => setPlayerName(e.target.value)
+              }
               />
               : <span className='text-white text-sm font-medium tracking-wide'>{playerName}</span>
           }
-          <button
-              className={`text-xs uppercase tracking-widest font-bold transition-colors
-            ${isEditing ? 'text-amber-400 hover:text-amber-300' : 'text-zinc-500 hover:text-zinc-300'}`}
-              onClick={editClick}>
-              {isEditing ? '✓ Save' : 'Edit'}
-          </button>
+          {isEditing ? (
+              <>
+                  <button
+                      className={`${btnClass} text-amber-400 hover:text-amber-300`}
+                      onClick={editClick}>
+                      ✓ Save
+                  </button>
+                  <button
+                      className={`${btnClass} text-red-400 hover:text-red-300`}
+                      onClick={cancelClick}>
+                      ✗ Cancel
+                  </button>
+              </>
+          ) : (
+              <button
+                  className={`${btnClass} text-zinc-500 hover:text-zinc-300`}
+                  onClick={editClick}>
+                  Edit
+              </button>
+          )}
       </li>
   )
 }
